@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎁</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Floating hearts canvas -->
+  <canvas id="hearts-canvas"></canvas>
+
+  <!-- Opening Screen -->
+  <div id="opening-screen">
+
+    <!-- Header Block -->
+    <div class="header-block">
+
+      <p class="eyebrow">A little surprise is waiting for you...</p>
+
+      <div class="swirl-divider top-divider">
+        <svg viewBox="0 0 320 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 14 Q40 4 70 14 Q100 24 130 14 Q160 4 160 14" stroke="#c9813a" stroke-width="1" fill="none" opacity="0.5"/>
+          <path d="M310 14 Q280 4 250 14 Q220 24 190 14 Q160 4 160 14" stroke="#c9813a" stroke-width="1" fill="none" opacity="0.5"/>
+          <circle cx="160" cy="14" r="3" fill="#e8a84a" opacity="0.8"/>
+          <circle cx="148" cy="14" r="1.5" fill="#e8a84a" opacity="0.5"/>
+          <circle cx="172" cy="14" r="1.5" fill="#e8a84a" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="arch-heading-wrap">
+        <span class="sparkle sp1">✦</span>
+        <span class="sparkle sp2">✦</span>
+        <span class="sparkle sp3">✦</span>
+        <span class="sparkle sp4">·</span>
+        <span class="sparkle sp5">·</span>
+        <span class="sparkle sp6">✦</span>
+
+        <svg class="arch-svg" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="archPath" d="M 30 180 Q 160 10 300 10 Q 440 10 570 180"/>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#ffe8a3"/>
+              <stop offset="25%"  stop-color="#f3c641"/>
+              <stop offset="55%"  stop-color="#fff5d0"/>
+              <stop offset="80%"  stop-color="#c29425"/>
+              <stop offset="100%" stop-color="#ffe8a3"/>
+            </linearGradient>
+            <filter id="goldGlow">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feFlood flood-color="#f5c040" flood-opacity="0.7" result="color"/>
+              <feComposite in="color" in2="blur" operator="in" result="glow"/>
+              <feMerge><feMergeNode in="glow"/><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow">
+              <feGaussianBlur stdDeviation="10" result="blur"/>
+              <feFlood flood-color="#f8d060" flood-opacity="0.5" result="color"/>
+              <feComposite in="color" in2="blur" operator="in" result="glow"/>
+              <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Glow halo layer -->
+          <text font-size="72" font-weight="400" font-style="italic"
+                font-family="Cormorant Garamond, serif"
+                fill="#f8c840" opacity="0.25" filter="url(#softGlow)">
+            <textPath href="#archPath" startOffset="50%" text-anchor="middle">Happy Birthday,</textPath>
+          </text>
+          <!-- Main gold text -->
+          <text font-size="72" font-weight="400" font-style="italic"
+                font-family="Cormorant Garamond, serif"
+                fill="url(#goldGrad)" filter="url(#goldGlow)">
+            <textPath href="#archPath" startOffset="50%" text-anchor="middle">Happy Birthday,</textPath>
+          </text>
+        </svg>
+      </div>
+
+      <div class="name-line">
+        <span class="name-text">n a m e !</span>
+      </div>
+
+      <div class="swirl-divider bottom-divider">
+        <svg viewBox="0 0 320 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 14 Q40 4 70 14 Q100 24 130 14 Q160 4 160 14" stroke="#c9813a" stroke-width="1" fill="none" opacity="0.5"/>
+          <path d="M310 14 Q280 4 250 14 Q220 24 190 14 Q160 4 160 14" stroke="#c9813a" stroke-width="1" fill="none" opacity="0.5"/>
+          <circle cx="160" cy="14" r="3" fill="#e8a84a" opacity="0.8"/>
+          <circle cx="143" cy="14" r="1.2" fill="#e8a84a" opacity="0.4"/>
+          <circle cx="177" cy="14" r="1.2" fill="#e8a84a" opacity="0.4"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- 3D Gift Box -->
+    <div class="gift-scene" id="giftScene" onclick="openGift()">
+
+      <!-- Motion wiggle lines -->
+      <div class="wiggle-lines">
+        <span class="wl wl-tl"></span>
+        <span class="wl wl-tr"></span>
+        <span class="wl wl-bl"></span>
+        <span class="wl wl-br"></span>
+      </div>
+
+      <div class="gift-3d" id="gift3d">
+
+        <!-- LID group -->
+        <div class="lid" id="lid">
+          <div class="lid-top face"></div>
+          <div class="lid-front face"></div>
+          <div class="lid-right face"></div>
+
+          <!-- Ribbon on lid -->
+          <div class="lid-ribbon-h"></div>
+          <div class="lid-ribbon-v"></div>
+
+          <!-- Bow -->
+          <div class="bow">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+            <div class="bow-knot"></div>
+            <div class="bow-tail-l"></div>
+            <div class="bow-tail-r"></div>
+          </div>
+        </div>
+
+        <!-- BOX body -->
+        <div class="box-body">
+          <div class="box-top face"></div>
+          <div class="box-front face"></div>
+          <div class="box-right face"></div>
+
+          <!-- Ribbon stripes on box -->
+          <div class="box-ribbon-h"></div>
+          <div class="box-ribbon-v"></div>
+          <div class="box-ribbon-side"></div>
+        </div>
+
+      </div>
+
+      <!-- Tag -->
+      <div class="gift-tag">
+        <span>Just<br>for<br>you</span>
+        <div class="tag-heart">♥</div>
+      </div>
+
+    </div>
+
+    <!-- Open Button -->
+    <button class="open-btn" onclick="openGift()">
+      Open &nbsp;<span class="btn-heart">♥</span>
+    </button>
+
+    <p class="footer-text">Made with love, just for you.</p>
+
+  </div>
+
+  <!-- Next screen placeholder (password page) -->
+  <div id="next-screen">
+    <div class="next-inner">
+      <p class="next-eyebrow">One more step...</p>
+      <h2 class="next-heading">Enter the secret word 🔐</h2>
+      <div class="pin-row">
+        <input class="pin-input" type="password" maxlength="1" />
+        <input class="pin-input" type="password" maxlength="1" />
+        <input class="pin-input" type="password" maxlength="1" />
+        <input class="pin-input" type="password" maxlength="1" />
+      </div>
+      <p class="pin-hint">Hint: the day we first met ✨</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
